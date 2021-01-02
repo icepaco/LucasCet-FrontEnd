@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<section id="application">
+<header data-loader="application">
+<h1>Application</h1>
+
+<p>&Eacute;l&eacute;ments de l&#39;application</p>
+</header>
+
+<section id="listAnim" lang="Fr" style="display: none;">&nbsp;</section>
+
+<section class="app-nav">
+<button id="btnAppDid" name="appDidCreation" onclick="newApplication()">Creer une application didactique</button>
+<button id="btnAppExer" name="appExCreation" onclick="newExercize()">Creer un exercice</button>
+</section>
+
+<section id="dispSeq" style="display: none;">&nbsp;</section>
+
+<section id="listSeq">&nbsp;</section>
+
+<section  style="display: none;">
+<input class="appName" maxlength="105" name="ApplicationName" size="16" type="text" value="Nom de la Substance" />
+<div id="activeSubPane"></div>
+</section>
+
+
+<footer class="bottom-nav"><button id="btnRecordApp" onclick="recordAll()">Enregistrer les donnees de l&#39;application</button>
+<button onclick="loadHomePage()">Retour a l&#39;accueil</button>
+<button onclick="switchPage('dicoSubstance.html')" title="Retour au Dictionnaire Substance">Retour au Dictionnaire Substance</button>
+</footer>
+</section>
+</body>
+</html>

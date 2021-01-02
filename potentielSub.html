@@ -1,0 +1,100 @@
+<section class="subsantes-potentielles" id="">
+	<!-- Potential Substance -->
+	<header data-loader="substances">
+		<h2>Substances Potentielles</h2>
+	</header>
+	
+	
+		<section class="potCon" lang="Fr" title="Conteneur Potentiel">
+			<h1>Substance Potentielle</h1>
+
+			<p><input class="sName" maxlength="25" name="subName" size="16" type="text" value="Nom de la Substance" /></p>
+
+			<p><img alt="Representation non disponible" class="imgSub" lang="Fr" src="none" /></p>
+		</section>
+		
+		
+	<!-- Dynamic Substance -->
+		<section class="motSub" lang="Fr">
+			<h2>
+				<input class="dynaId" maxlength="25" name="motName" size="1" type="text" value="Nom de la Substance motrice" />
+			</h2>
+
+			<p>Selectionnez la substance principale associee dans la liste (video) :<br>
+				<video alt="Animation non disponible" class="vidMotrice" lang="Fr" src="none">&nbsp;</video>
+			</p>
+
+			<div class="listSubstance" lang="Fr">
+				<p>&nbsp;</p>
+			</div>
+		</section>
+	
+	<!-- Relation Substance -->
+	<section class="relationSub" lang="Fr">
+		<header>
+			<h2>
+				<input class="relationName" maxlength="25" name="relName" size="1" type="text" value="Entrer un nom pour cette relation" />
+			</h2>
+			
+		</header>
+		<section>
+			<p>
+				<img alt="Aucune image pour cette" class="imgRel" lang="Fr" src="" style="display: none;" />
+			</p>
+
+			<p >
+				<video alt="Aucune animation" class="vidRel" lang="Fr" src="" style="display: none;"></video>
+			</p>
+
+			<table align="center" border="1" cellpadding="1" cellspacing="1">
+				<thead>
+					<tr>
+						<th scope="col">Liee1</th>
+						<th scope="col">Lien</th>
+						<th scope="col">Liee2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+						<div class="liee1" lang="Fr">&nbsp;</div>
+						</td>
+						<td>
+						<div class="lien" lang="Fr">&nbsp;</div>
+						</td>
+						<td>
+						<div class="liee2" lang="Fr">&nbsp;</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</section>	
+		
+		<section class="selection imgInteractif">
+			<h2 class="txtTitre">titre</h2>
+
+			<div class="dropShadow bloc"><p><input alt="Cliquer" class="activateur" id="" src="none" lang="Fr" type="icon" /></p></div>
+		</section>
+		
+		<section>
+			<!-- Liste d'image à selectionner lors de la construction d'une nouvelle Substance -->
+
+			<p>
+				<!--img class="imgThumb" alt="Image non disponible" lang="Fr" src="none" /-->
+				<div class="attachment-preview type-image subtype-jpeg landscape">
+					<div class="thumbnail">
+						<div class="centered">
+							<img class="imgThumb" src="" draggable="false" style="height:165px;margin:0" />
+						</div>
+					</div>
+					<a class="check" href="javascript:"><div class="media-modal-icon"></div></a>
+				</div>
+			</p>
+			<!-- Liste d'animation à sélectionner lors de la construction d'une nouvelle Substance -->
+
+			<p>
+				<video class="videoThumb" alt="Video non disponible" lang="Fr" src="none" />
+			</p>
+		</section>
+</section>

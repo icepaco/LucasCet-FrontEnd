@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dico Substance</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'/>
+<link href="/css/normalize.min.css" rel="stylesheet" />
+<link href="/css/main.css" rel="stylesheet" />
+<link href="/pages/sequences.html" rel="import" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+<script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="/js/applicationHandler.js"></script>
+<script src="/js/plugins.js"></script>
+<script type="text/javascript" src="/js/multimediaHandler.js"></script>
+<script type="text/javascript" src="/js/substances.js"></script>
+<script type="text/javascript" src="/js/substanceHandler.js"></script>
+<script src="/js/main.js"></script>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+        <title>LUCAS C.E.T.</title>
+
+</head>
+<body>
+<div class="container authenticated" style="display:none">
+    Logged in as: <span id="user"></span>
+    <button onClick="logout()" class="btn btn-primary">Logout</button>
+        <input type="file" id="file-chooser" />
+
+        <button id="upload-button" style="display:block">
+            Upload to S3
+        </button>
+
+        <button id="createPotentialSubstance" onClick="getFiles()" style="display:block">
+            Create a new Potential Substance
+        </button>
+
+        <button id="createMotionSubstance" onClick="getSubstances()" style="display:block">
+            Create a new Motion Substance
+        </button>
+
+        <button id="createRelationSubstance" style="display:block">
+            Create a new Relation Substance
+        </button>
+
+        <button id="createGraphicLink" style="display:block">
+            Create a new GraphicLink
+        </button>
+
+        <button id="createNewApp" style="display:block">
+            Create an application
+        </button>
+
+        <div id="results">
+        <img id="imgSub" onClick="makePotential()" alt="This is an image">
+        </div>
+    
+</div>
+<script type="text/javascript">
+var logout = function() {
+    $.post("/logout", function() {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    })
+    return true;
+}
+var makePotential = function()
+{
+	var imgSelected = $("#imgSub")[0].src;
+	$.post("/createPotential",{selection:imgSelected,title:"test"}, function(data){
+		if(data)
+			alert("Success");
+	});
+}
+var getSubstances = function()
+{
+	$.get("/downloadSubstances", function(data)
+			{
+				var test = data;
+			});
+}
+var getFiles = function() 
+{
+    $.get("/downloadGraphic", {keyName:"unimasoftlucasrepository/image/*.*"}, function(data)
+    		{
+    			$('#imgSub')[0].src = data[0];
+    		});    	
+}
+$.ajaxSetup({
+  beforeSend : function(xhr, settings) {
+    if (settings.type == 'POST' || settings.type == 'PUT'
+        || settings.type == 'DELETE') {
+      if (!(/^http:.*/.test(settings.url) || /^https:.*/
+          .test(settings.url))) {
+        // Only send the token to relative URLs i.e. locally.
+        xhr.setRequestHeader("X-XSRF-TOKEN",
+            Cookies.get('XSRF-TOKEN'));
+      }
+    }
+  }
+});
+    $.get("/user", function(data) {
+        $("#user").html(data.login);        
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+    var fileChooser = document.getElementById('file-chooser');
+
+    var loadPage = "";
+
+    var loadPage2 = "";
+
+    var button = document.getElementById('upload-button');
+
+    button.addEventListener('click', function() {
+
+        var file = fileChooser.files[0];
+
+        if (file) {
+
+            var formData = new FormData();
+            var that = this;
+
+            // add assoc key values, this will be posts values
+            formData.append("file", file, file.name);
+            formData.append("upload_file", true);
+
+            $.ajax({
+                type: "post",
+                url: "/uploadGraphic",
+                xhr: function () {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', that.progressHandling, false);
+                    }
+                    return myXhr;
+                },
+                success: function (message) {
+                    alert("Success:"+message);
+                },
+                error: function (error) {
+                    alert("Error:"+error);
+                },
+                async: true,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 60000
+                });
+        }
+    });    
+    
+</script>
+</body>
+</html>
+</body>
+</html>
